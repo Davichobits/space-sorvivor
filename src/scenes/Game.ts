@@ -19,17 +19,21 @@ export class Game extends Scene
         this.background = this.add.image(512, 384, 'background');
         this.background.setAlpha(0.5);
 
-        this.msg_text = this.add.text(512, 384, 'Make something fun!\nand share it with us:\nsupport@phaser.io', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
+        this.anims.create({
+            key: 'walk',
+            frames: this.anims.generateFrameNumbers('atlas', { start: 0, end: 3 }), // Rango de fotogramas
+            frameRate: 10, // Velocidad de la animación
+            repeat: -1,    // Repetir indefinidamente
         });
-        this.msg_text.setOrigin(0.5);
+        
+          // Crear el sprite y reproducir la animación
+        const player = this.add.sprite(100, 100, 'player');
+        player.play('walk');
 
-        this.input.once('pointerdown', () => {
+        // this.input.once('pointerdown', () => {
 
-            this.scene.start('GameOver');
+        //     this.scene.start('GameOver');
 
-        });
+        // });
     }
 }
