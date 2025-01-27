@@ -34,7 +34,7 @@ export class Preloader extends Scene
 
         this.load.image('logo', 'logo.png');
 
-        this.load.spritesheet('atlas', '../../public/assets/main-character/Walk1.png', { frameWidth: 48, frameHeight: 48 });
+        this.load.spritesheet('atlas', '../../assets/main-character/Walk1.png', { frameWidth: 48, frameHeight: 48 });
     }
 
     create ()
