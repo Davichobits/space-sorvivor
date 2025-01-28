@@ -6,12 +6,14 @@ export class Game extends Scene {
 	msg_text: Phaser.GameObjects.Text;
 	keys: Phaser.Types.Input.Keyboard.CursorKeys;
 	player: Phaser.GameObjects.Sprite;
-
+	playerSpeed: number;
+	
 	constructor() {
 		super('Game');
 	}
-
+	
 	create() {
+		this.playerSpeed = 1;
 		this.camera = this.cameras.main;
 		this.camera.setBackgroundColor(0x00ff00);
 
@@ -21,7 +23,7 @@ export class Game extends Scene {
 		this.anims.create({
 			key: 'walk',
 			frames: this.anims.generateFrameNumbers('atlas', { start: 0, end: 3 }), // Rango de fotogramas
-			frameRate: 10, // Velocidad de la animación
+			frameRate: 12, // Velocidad de la animación
 			repeat: -1,    // Repetir indefinidamente
 		});
 
@@ -44,20 +46,30 @@ export class Game extends Scene {
 	}
 
 	update() {
+		let isMoving = false;
 		if (this.keys.left.isDown) {
-			this.player.x -= 10;
+			this.player.x -= this.playerSpeed;
+			isMoving = true;
 		}
 		if (this.keys.right.isDown) {
-			this.player.x += 10;
+			this.player.x += this.playerSpeed;
 			// this.camera.scrollX += 10;
+			isMoving = true;
 		}
 		if (this.keys.up.isDown) {
 			// this.camera.scrollY -= 10;
-			this.player.y -= 10;
+			this.player.y -= this.playerSpeed;
+			isMoving = true;
 		}
 		if (this.keys.down.isDown) {
 			// this.camera.scrollY += 10;
-			this.player.y += 10;
+			this.player.y += this.playerSpeed;
+			isMoving = true;
+		}
+		if (isMoving) {
+			this.player.play('walk', true);
+		}else {
+			this.player.anims.stop();
 		}
 	}
 }
