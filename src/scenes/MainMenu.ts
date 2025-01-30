@@ -13,14 +13,12 @@ export class MainMenu extends Scene
 
     create ()
     {
-        this.background = this.add.image(512, 384, 'background');
-
-        this.logo = this.add.image(512, 300, 'logo');
+        this.background = this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'background');
 
         const text = this.add.text(
             this.scale.width / 2, // Centrar el texto horizontalmente
             this.scale.height / 2, // Centrar el texto verticalmente
-            'Cargando...', // Contenido del texto
+            'SPACE SURVIVOR', // Contenido del texto
             {
                 font: '32px Arial', // Fuente y tamaño
                 color: '#ffffff', // Color del texto
